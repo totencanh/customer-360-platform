@@ -31,7 +31,7 @@ def import_to_postgres(df):
     user = 'totencanh'
     password = 'totencanh'
     df.write.format('jdbc').option('url', url).option('driver', driver).option('dbtable', 'customer_behavior_stats').option('user', user).option('password', password).mode('append').save()
-def save_path(df):
+def save_path(df, save_path):
     df.repartition(1).write.mode("overwrite").option("header", "true").csv(save_path)
     print("Save successfully")
 input_path = "D:/ChuyenNganh/Project/customer-360-platform/ETL_behavior/data/log_search/"
@@ -56,4 +56,5 @@ for date in range(1, len(date_list)):
 print("TRANSFORM")
 df = process_log_search(new_df)
 df.show()
+save_path(df, output_path)
 import_to_postgres(df)
