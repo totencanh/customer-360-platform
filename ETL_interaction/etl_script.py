@@ -2,7 +2,7 @@ import findspark
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from datetime import datetime, timedelta
-from etl_file import main as etl_file, save_file as save_file, import_to_postgres
+from ETL_interaction.etl_interaction import main as etl_file, save_file as save_file, import_to_postgres
 findspark.init()
 import argparse
 parser = argparse.ArgumentParser()
