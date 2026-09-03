@@ -48,7 +48,7 @@ def sum_activeness(df):
     df = df.withColumnRenamed("count(date)", "sum_date")
     df = df.withColumn("activate_level", when((col("sum_date") <= 7) & (col("sum_date") >= 1), "very low")
                        .when((col("sum_date") >= 8) & (col("sum_date") <= 14), "low")
-                       .when((col("sum_date") >= 15) & (col("sum_date") >= 21), "moderate")
+                       .when((col("sum_date") >= 15) & (col("sum_date") <= 21), "moderate")
                        .when((col("sum_date") >= 22) & (col("sum_date") <= 28), "high")
                        .when((col("sum_date") >= 29) & (col("sum_date") <= 31), "very high"))
     df = df.drop("sum_date")
