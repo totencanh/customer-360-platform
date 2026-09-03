@@ -178,7 +178,6 @@ Image build từ `python:3.11-slim`, tự cài Java (`default-jre`) để chạy
 
 - [ ] **Đường dẫn hard-code**: input/output path đang hard-code theo máy Windows cá nhân. `etl_script.py` đã có sẵn `argparse` (`--input_path`, `--output_path`, `--current_day`, `--to_day`) nhưng đang bị comment — nên bật lại để chạy linh hoạt qua CLI.
 - [ ] **Thông tin kết nối DB hard-code**: user/password/host của PostgreSQL đang gán cứng trong code — nên chuyển sang biến môi trường (`.env`) hoặc file config.
-- [ ] **Lỗi logic điều kiện `moderate`** trong `sum_activeness()`: điều kiện hiện tại là `(sum_date >= 15) & (sum_date >= 21)`, có thể không như ý muốn ban đầu — nên sửa thành `(sum_date >= 15) & (sum_date <= 21)`.
 - [ ] **Hàm `save_path()` trong `etl_behavior.py`** hiện chưa được gọi trong luồng chính và tham chiếu nhầm biến `save_path` (trùng tên hàm) thay vì tham số `df`/`output_path` — cần rà soát lại trước khi dùng để xuất CSV.
 - [ ] **Chưa có test tự động**: nên bổ sung unit test cho các hàm transform bằng `pytest` + `pyspark.testing` hoặc dữ liệu mẫu nhỏ.
 - [ ] **Điều phối pipeline**: có thể tích hợp Airflow/dbt để lập lịch và quản lý dependency giữa 2 pipeline thay vì chạy thủ công qua `input()`.
