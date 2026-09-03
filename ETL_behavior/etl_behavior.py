@@ -31,7 +31,9 @@ def import_to_postgres(df):
     user = 'totencanh'
     password = 'totencanh'
     df.write.format('jdbc').option('url', url).option('driver', driver).option('dbtable', 'customer_behavior_stats').option('user', user).option('password', password).mode('append').save()
-
+def save_path(df):
+    df.repartition(1).write.mode("overwrite").option("header", "true").csv(save_path)
+    print("Save successfully")
 input_path = "D:/ChuyenNganh/Project/customer-360-platform/ETL_behavior/data/log_search/"
 output_path = "D:/ChuyenNganh/Project/customer-360-platform/ETL_behavior/output/"
 current_date = str(input("Nhap ngay: "))
